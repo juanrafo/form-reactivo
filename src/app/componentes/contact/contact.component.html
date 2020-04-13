@@ -1,0 +1,33 @@
+<div class="form-container">
+    <h1>Contact Us!</h1>
+    <form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+        <input type="text" formControlName="name" placeholder="Your Name">
+        <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)"> 
+            <div class="container-error-message" *ngIf="name.errors.required">
+                Name is required.
+            </div>
+            <div class="container-error-message" *ngIf="name.errors.minlength">
+                Name must be at least 5 characters long.
+            </div>
+        </div>
+        <input type="text" formControlName="email" placeholder="Your Email">
+        <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)"> 
+            <div class="container-error-message" *ngIf="email.errors.required">
+                email is required.
+            </div>
+            <div class="container-error-message" *ngIf="email.errors.minlength">
+                email must be at least 5 characters long.
+            </div>
+        </div>
+        <textarea formControlName="message" placeholder="Type Your Message"></textarea>
+        <div class="alert-danger" *ngIf="message.invalid && (email.dirty || message.touched)"> 
+            <div class="container-error-message" *ngIf="message.errors.required">
+                message is required.
+            </div>
+            <div class="container-error-message" *ngIf="message.errors.minlength">
+                message must be at least 10 characters long.
+            </div>
+        </div>
+        <button type="submit" class="btn-send" [disabled]=!contactForm.valid>Send</button>
+    </form>
+</div>
